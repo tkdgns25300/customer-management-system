@@ -1,14 +1,13 @@
 import React from 'react';
 
-class Customer extends React.Component {
-    render() {
+const Customer = ({ name, birthday, gender, job }) => {
+    return (
         <div>
-            <h1>홍길동</h1>
-            <p>000729</p>
-            <p>남자</p>
-            <p>대학생</p>
+            <h1>{name}</h1>
+            <p>{birthday}</p>
+            <p>{gender}</p>
+            <p>{job}</p>
         </div>
-    }
+    )
 }
-
 export default Customer;
