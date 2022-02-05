@@ -4,7 +4,18 @@ import './App.css';
 import Customer from './components/Customer';
 
 // material
-import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+import { Table, TableHead, TableBody, TableRow, TableCell, Paper, withStyles } from '@material-ui/core';
+
+const styles = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto"
+  },
+  table: {
+    minWidth: 1080
+  }
+})
 
 const customers = [
   {
@@ -34,10 +45,10 @@ const customers = [
 ]
 
 
-function App() {
+function App({ classes }) {
   return (
-    <div>
-      <Table>
+    <Paper className={classes.root}>
+      <Table className={classes.table}>
         <TableHead>
           <TableRow>
             <TableCell>Number</TableCell>
@@ -61,9 +72,8 @@ function App() {
           })}
         </TableBody>
       </Table>
-
-    </div>
+    </Paper>
   )
 }
 
-export default App;
+export default withStyles(styles)(App);
