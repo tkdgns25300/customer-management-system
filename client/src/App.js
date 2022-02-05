@@ -3,30 +3,33 @@ import './App.css';
 // components
 import Customer from './components/Customer';
 
+// material
+import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+
 const customers = [
   {
     id: 1,
     image: 'https://placeimg.com/64/64/1',
-    name: '이상훈',
+    name: 'Sang',
     birthday: '000729',
-    gender: 'male',
-    job: 'none'
+    gender: 'Male',
+    job: 'Web-Developer'
   },
   {
     id: 2,
     image: 'https://placeimg.com/64/64/2',
-    name: '이장훈',
+    name: 'Jang',
     birthday: '990427',
-    gender: 'male',
-    job: 'student'
+    gender: 'Male',
+    job: 'Student'
   },
   {
     id: 3,
-    image: 'https://placeimg.com/64/64/3',
-    name: '이재영',
+    image: 'https://placeimg.com/64/64/4',
+    name: 'Jae',
     birthday: '961225',
-    gender: 'female',
-    job: 'student'
+    gender: 'Female',
+    job: 'Student'
   }
 ]
 
@@ -34,16 +37,31 @@ const customers = [
 function App() {
   return (
     <div>
-      {customers.map(customer => {
-        return <Customer
-          id={customer.id}
-          image={customer.image}
-          name={customer.name}
-          birthday={customer.birthday}
-          gender={customer.gender}
-          job={customer.job}
-        />
-      })}
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Number</TableCell>
+            <TableCell>Image</TableCell>
+            <TableCell>Name</TableCell>
+            <TableCell>Birth</TableCell>
+            <TableCell>Gender</TableCell>
+            <TableCell>Job</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {customers.map(customer => {
+            return <Customer
+              id={customer.id}
+              image={customer.image}
+              name={customer.name}
+              birthday={customer.birthday}
+              gender={customer.gender}
+              job={customer.job}
+            />
+          })}
+        </TableBody>
+      </Table>
+
     </div>
   )
 }
