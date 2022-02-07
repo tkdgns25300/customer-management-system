@@ -1,4 +1,5 @@
 import './App.css';
+import { useState, useEffect, Component } from 'react';
 
 // components
 import Customer from './components/Customer';
@@ -17,35 +18,67 @@ const styles = theme => ({
   }
 })
 
-const customers = [
-  {
-    id: 1,
-    image: 'https://placeimg.com/64/64/1',
-    name: 'Sang',
-    birthday: '000729',
-    gender: 'Male',
-    job: 'Web-Developer'
-  },
-  {
-    id: 2,
-    image: 'https://placeimg.com/64/64/2',
-    name: 'Jang',
-    birthday: '990427',
-    gender: 'Male',
-    job: 'Student'
-  },
-  {
-    id: 3,
-    image: 'https://placeimg.com/64/64/4',
-    name: 'Jae',
-    birthday: '961225',
-    gender: 'Female',
-    job: 'Student'
-  }
-]
+// class App extends Component {
+//   state = {
+//     customers: ""
+//   }
+
+//   componentDidMount() {
+//     this.callApi()
+//       .then(res => this.setState({customers: res}))
+//       .catch(err => console.log(err));
+//   }
+
+//   callApi = async () => {
+//     const response = await fetch('/api/customers');
+//     const body = await response.json();
+//     return body;
+//   }
+
+//   render() {
+//     const { classes } = this.props;
+//     return (
+//       <Paper className={classes.root}>
+//         <Table className={classes.table}>
+//           <TableHead>
+//             <TableRow>
+//               <TableCell>Number</TableCell>
+//               <TableCell>Image</TableCell>
+//               <TableCell>Name</TableCell>
+//               <TableCell>Birth</TableCell>
+//               <TableCell>Gender</TableCell>
+//               <TableCell>Job</TableCell>
+//             </TableRow>
+//           </TableHead>
+//           <TableBody>
+//             {this.state.customers ? this.state.customers.map(customer => {
+//               return <Customer
+//                 id={customer.id}
+//                 image={customer.image}
+//                 name={customer.name}
+//                 birthday={customer.birthday}
+//                 gender={customer.gender}
+//                 job={customer.job}
+//               />
+//             }) : ""}
+//           </TableBody>
+//         </Table>
+//       </Paper>
+//     )
+//   }
+// }
 
 
 function App({ classes }) {
+  const [customers, setCustomers] = useState("");
+
+  useEffect(async () => {
+    const response = await fetch('http://localhost:5000/api/customers');
+    const body = await response.json();
+    console.log(body);
+    setCustomers(body);
+  }, [])
+
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -60,7 +93,7 @@ function App({ classes }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {customers.map(customer => {
+          {customers ?? customers.map(customer => {
             return <Customer
               id={customer.id}
               image={customer.image}
